@@ -1,14 +1,22 @@
 import './App.css';
-import { DATA } from "./data/data_v1";
+import { DATA } from "./data/data_v2";
 
 function OderLine() {
   return <div>
     <hr/>
   </div>;
 }
+
+function Image(props) {
+  const {text} = props;
+  return <div><img src={text.substring(2)} alt=""/></div>;
+
+}
+
 function Text(props) {
   const {text} = props;
   if (text.startsWith("---")) return <OderLine/>;
+  if (text.startsWith("[[")) return <Image text={text}/>;
   return <div>{text}</div>;
 }
 
