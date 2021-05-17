@@ -1,5 +1,5 @@
 import './App.css';
-import { DATA } from "./data/data_v2";
+import { DATA } from "./data/data_v3";
 
 function OderLine() {
   return <div>
@@ -13,6 +13,7 @@ function Image(props) {
 
 }
 
+
 function Text(props) {
   const {text} = props;
   if (text.startsWith("---")) return <OderLine/>;
@@ -23,11 +24,11 @@ function Text(props) {
 function IndexPage(props){
   const {indexPage}=props;
   return <div>
-       <h1>{indexPage.title}</h1>
-    <div>
+       <h1 className="title">{indexPage.title}</h1>
+    <div className="padding">
       {indexPage.text.map((t, i) => <Text key={i} text={t}/>)}
     </div>
-    <footer>-{indexPage.pageNumber}-</footer>
+    <footer className="footer">-{indexPage.pageNumber}-</footer>
   </div>
 }
 function App() {
