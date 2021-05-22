@@ -14,7 +14,19 @@ function Image(props) {
 }
 
 
-
+function  TextItalic(props){
+  const {text}=props;
+  const textbook=text.split("_");
+  return (
+      <>
+        {
+          textbook.map((hero,index) => {
+            return (index % 2 ?<i key={index}>{hero}</i> : hero)
+          })
+        }
+      </>
+  )
+}
 
 function TextBold(props){
   const {text}=props;
@@ -24,7 +36,7 @@ function TextBold(props){
       <>
         {
           textbook.map((hero,index) => {
-            return (index % 2 ?<b key={index}>{hero}</b> : hero)
+            return (index % 2 ?<b key={index}>{hero}</b> : <TextItalic key={index} text={hero}/>)
           })
         }
       </>
