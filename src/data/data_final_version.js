@@ -6,7 +6,7 @@ export const DATA = [
             "Moestuinieren is hip, en wat is er nu leuker dan groenten en fruit eten van eigen kweek? ",
             "De aanleg van een moestuin is niet moeilijk, ook als je geen of weinig ervaring hiermee hebt. Moestuinieren begint met een goede voorbereiding. " ,
             "Het succes van je moestuin heeft alles te maken met de keuze van de plek, de kwaliteit van de grond, de bemesting en het (in)zaaien.",
-            "*Is deze basis goed, dan is de helft van het werk al gedaan.*",
+            "*Is deze basis goed_, dan is de helft van het werk al gedaan.*",
             "---",
             "[[img/zaaien-800x450.jpg"
         ]
@@ -48,7 +48,7 @@ export const DATA = [
             "[[img/potato-800x450.jpg",
             "Over het _algemeen_ geldt dat hoe *meer* mest, hoe *meer* blad. ",
             "Dat is voor bladgroenten natuurlijk gunstig, maar bijvoorbeeld wortelgroenten geven dan vooral veel loof, en weinig wortel.",
-            "Veel groenten houden er wel van om verwend te worden met wat compost."
+            "Veel groenten houden er wel van om verwend te worden met wat compost.",
         ]
     },
     {
