@@ -1,24 +1,42 @@
 import './App.css';
-import { DATA } from "./data/data_v3";
+import { DATA } from "./data/data_final_version";
 
 function OderLine() {
   return <div>
-    <hr/>
+    {'\n'}
   </div>;
 }
 
 function Image(props) {
   const {text} = props;
-  return <div><img src={text.substring(2)} alt=""/></div>;
+  return <div><img src={text.substring(2)} alt="tips"/></div>;
 
 }
 
+
+
+
+function TextBold(props){
+  const {text}=props;
+  const textbook=text.split("*");
+
+  return (
+      <>
+        {
+          textbook.map((hero,index) => {
+            return (index % 2 ?<b key={index}>{hero}</b> : hero)
+          })
+        }
+      </>
+  )
+
+}
 
 function Text(props) {
   const {text} = props;
   if (text.startsWith("---")) return <OderLine/>;
   if (text.startsWith("[[")) return <Image text={text}/>;
-  return <div>{text}</div>;
+  return <div><TextBold text={text}/></div>;
 }
 
 function IndexPage(props){
@@ -37,8 +55,6 @@ function App() {
       {
         DATA.map((p)=><IndexPage key={p.pageNumber} indexPage={p}/>)
       }
-
-
 
     </div>
   );
