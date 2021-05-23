@@ -9,7 +9,7 @@ function OderLine() {
 
 function Image(props) {
   const {text} = props;
-  return <div><img src={text.replace("[[","")} alt="tips"/></div>;
+  return <div><img src={text.replace("[[","")} alt="tipss"/></div>;
 
 }
 
