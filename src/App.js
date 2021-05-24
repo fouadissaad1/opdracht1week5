@@ -71,12 +71,18 @@ function IndexPage(props){
   </div>
 }
 function App() {
-  const [showMyfirtPage] = useState(DATA[0]);
+  const [showMyfirtPage,setShowMyfirtPage] = useState(DATA[0]);
 
+function nextPage(){
+  const indexofpage=DATA.findIndex(p=>p.pageNumber===showMyfirtPage.pageNumber)
+
+  return DATA[indexofpage <DATA.length -1 ? indexofpage+1:0];
+}
   return (
 
       <div className="section">
         <IndexPage indexPage={showMyfirtPage}/>
+        <button onClick={()=>setShowMyfirtPage(nextPage())}>Next</button>
       </div>
   );
 }
