@@ -58,10 +58,9 @@ function Text(props) {
 }
 
 
-
 function IndexPage(props){
   const {indexPage}=props;
-
+  if (!indexPage) return null;
   return <div>
        <h1 className="title">{indexPage.title.toUpperCase()}</h1>
     <div className="padding">
@@ -71,18 +70,30 @@ function IndexPage(props){
   </div>
 }
 function App() {
-  const [showMyfirtPage,setShowMyfirtPage] = useState(DATA[0]);
+  const [showMyfirtPage, setShowMyfirtPage] = useState(DATA[0]);
 
-function nextPage(){
-  const indexofpage=DATA.findIndex(p=>p.pageNumber===showMyfirtPage.pageNumber)
+  function nextPage() {
+    const indexofpage = DATA.findIndex(p => p.pageNumber === showMyfirtPage.pageNumber)
+    return DATA[indexofpage < DATA.length - 1 ? indexofpage + 1 : 0];
+  }
 
-  return DATA[indexofpage <DATA.length -1 ? indexofpage+1:0];
-}
+  function prevPage() {
+    const indexofpage = DATA.findIndex(p => p.pageNumber === showMyfirtPage.pageNumber)
+        return DATA[indexofpage < DATA.length + 1 ? indexofpage - 1 : 0];
+  }
+
   return (
 
-      <div className="section">
-        <IndexPage indexPage={showMyfirtPage}/>
-        <button onClick={()=>setShowMyfirtPage(nextPage())}>Next</button>
+      <div>
+        <nav>
+          <button>Home</button>
+        </nav>
+        <div>
+          <IndexPage indexPage={showMyfirtPage}/>
+
+          <button onClick={() => setShowMyfirtPage(nextPage())}>Next</button>
+          <button onClick={() => setShowMyfirtPage(prevPage())}>Prev</button>
+        </div>
       </div>
   );
 }
