@@ -1,5 +1,6 @@
 import './App.css';
 import { DATA } from "./data/data_final_version";
+import React, { useState } from "react";
 
 function OderLine() {
   return <div>
@@ -60,6 +61,7 @@ function Text(props) {
 
 function IndexPage(props){
   const {indexPage}=props;
+
   return <div>
        <h1 className="title">{indexPage.title.toUpperCase()}</h1>
     <div className="padding">
@@ -69,14 +71,13 @@ function IndexPage(props){
   </div>
 }
 function App() {
+  const [showPerson] = useState(DATA[0]);
+
   return (
-    <div>
-      {
-        DATA.map((p)=><IndexPage key={p.pageNumber} indexPage={p}/>)
-      }
 
-
-    </div>
+      <div className="section">
+        <IndexPage indexPage={showPerson}/>
+      </div>
   );
 }
 
