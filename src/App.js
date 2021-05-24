@@ -71,12 +71,12 @@ function IndexPage(props){
   </div>
 }
 function App() {
-  const [showPerson] = useState(DATA[0]);
+  const [showMyfirtPage] = useState(DATA[0]);
 
   return (
 
       <div className="section">
-        <IndexPage indexPage={showPerson}/>
+        <IndexPage indexPage={showMyfirtPage}/>
       </div>
   );
 }
