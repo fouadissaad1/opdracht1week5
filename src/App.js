@@ -13,9 +13,6 @@ function Image(props) {
   return <div><img src={text.replace("[[","")} alt="tipss"/></div>;
 
 }
-
-
-
 function  TextItalic(props){
   const {text}=props;
   const textbook=text.split("_");
@@ -37,8 +34,8 @@ function TextBold(props){
   return (
       <>
         {
-          textbook.map((hero,index) => {
-            return (index % 2 ?<b key={index}>{hero}</b>: <TextItalic key={index} text={hero}/>)
+          textbook.map((hero, index) => {
+            return (index % 2 ? <b key={index}>{hero}</b> : <TextItalic key={index} text={hero}/>)
           })
         }
       </>
@@ -46,6 +43,25 @@ function TextBold(props){
 
 }
 
+function TOCText(props) {
+  const {showMyfirtPage, setShowMyfirtPage} = props;
+  return <div className="item"
+              onClick={() => setShowMyfirtPage(showMyfirtPage)}>
+    {showMyfirtPage.pageNumber} -- {showMyfirtPage.title}
+  </div>;
+}
+
+function TocPage(props) {
+  const {data, setShowMyfirtPage} = props;
+  return <div>
+    <h1 className="title">Inhoud</h1>
+    <div>
+      {data.map((p) => <TOCText key={p.pageNumber}
+                                showMyfirtPage={p}
+                                setShowMyfirtPage={setShowMyfirtPage}/>)}
+    </div>
+  </div>;
+}
 
 
 function Text(props) {
@@ -70,29 +86,36 @@ function IndexPage(props){
   </div>
 }
 function App() {
-  const [showMyfirtPage, setShowMyfirtPage] = useState(DATA[0]);
-
+  const [showMyfirtPage, setShowMyfirtPage] = useState(null);
   function nextPage() {
-    const indexofpage = DATA.findIndex(p => p.pageNumber === showMyfirtPage.pageNumber)
-    return DATA[indexofpage < DATA.length - 1 ? indexofpage + 1 : 0];
+    if (!showMyfirtPage) return DATA[0];
+    const nowPageIndex = DATA.findIndex(p => p.pageNumber === showMyfirtPage.pageNumber)
+    if (nowPageIndex === DATA.length - 1) return null;
+    return DATA[nowPageIndex < DATA.length - 1 ? nowPageIndex + 1 : 0];
   }
 
   function prevPage() {
-    const indexofpage = DATA.findIndex(p => p.pageNumber === showMyfirtPage.pageNumber)
-        return DATA[indexofpage < DATA.length + 1 ? indexofpage - 1 : 0];
+    if (!showMyfirtPage) return DATA[DATA.length - 1];
+    const nowPageIndex = DATA.findIndex(p => p.pageNumber === showMyfirtPage.pageNumber)
+    if (nowPageIndex === 0) return null;
+    return DATA[showMyfirtPage < nowPageIndex + 1 ? showMyfirtPage - 1 : 0];
   }
 
   return (
 
       <div>
         <nav>
-          <button>Home</button>
+          <button onClick={() => setShowMyfirtPage(null)}>Menu
+          </button>
         </nav>
         <div>
-          <IndexPage indexPage={showMyfirtPage}/>
 
-          <button onClick={() => setShowMyfirtPage(nextPage())}>Next</button>
+          <IndexPage indexPage={showMyfirtPage}/>
+          {
+            !showMyfirtPage && <TocPage data={DATA} setShowMyfirtPage={setShowMyfirtPage}/>
+          }
           <button onClick={() => setShowMyfirtPage(prevPage())}>Prev</button>
+          <button onClick={() => setShowMyfirtPage(nextPage())}>Next</button>
         </div>
       </div>
   );
