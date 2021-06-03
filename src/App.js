@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 function OderLine() {
     return <div>
-        {'\n'}
+        <hr/>
     </div>;
 }
 
